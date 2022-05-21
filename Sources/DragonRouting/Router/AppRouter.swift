@@ -14,7 +14,6 @@ public class AppRouter: ObservableObject {
     private var navigationController: UINavigationController? {
         window?.rootViewController?.findNestedUINavigationController()
     }
-    private var routes: [Route] = []
 
     public init(window: UIWindow? = nil) {
         self.window = window
@@ -26,43 +25,10 @@ public extension AppRouter {
     func set(window: UIWindow?) {
         self.window = window
     }
-
-//    func register(_ route: Route) {
-//        routes.append(route)
-//    }
-//
-//    func remove(_ route: Route) {
-//        guard let index = routes.firstIndex(where: { $0.path == route.path }) else { return }
-//        routes.remove(at: index)
-//    }
-
-    func route(for path: String) -> Route? {
-        routes.first { $0.path == path}
-    }
 }
 
 // MARK: - Public methods - Navigation
 extension AppRouter {
-//    public func present(route: Route, with type: NavigationType) {
-//        switch type {
-//        case .modal:
-//            modal(route.content())
-//        case .push:
-//            push(route.content())
-//        }
-//    }
-
-//    public func present(path: String, with type: NavigationType) {
-//        guard let route = route(for: path) else { return }
-//
-//        switch type {
-//        case .modal:
-//            modal(route.content().environmentObject(self))
-//        case .push:
-//            push(route.content().environmentObject(self))
-//        }
-//    }
-    
     public func modal<Content: View>(_ view: Content, animated: Bool = true) {
         let navView = NavigationView { view.environmentObject(self) }
         let controller = hostingController(navView)
