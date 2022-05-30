@@ -74,6 +74,10 @@ extension AppRouter {
     public func dismissModal(animated: Bool = true) {
         navigationController?.dismiss(animated: animated)
     }
+
+    public func dismiss(animated: Bool = true) {
+        navigationController?.dismiss(animated: animated)
+    }
 }
 
 // MARK: - Private methods
